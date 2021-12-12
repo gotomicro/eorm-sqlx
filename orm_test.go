@@ -24,4 +24,6 @@ func TestSayHello(t *testing.T) {
 	assert.Equal(t, "Hello, Tom", str)
 	str = SayHello("Jerry")
 	assert.Equal(t, "Hello, Jerry", str)
+	str = SayHello("EQL")
+	assert.Equal(t, "Hello, EQL", str)
 }
