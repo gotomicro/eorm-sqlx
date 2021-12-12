@@ -12,29 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Go
+version = 1
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+[[analyzers]]
+name = "go"
+enabled = true
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Go
-        uses: gotomicro/gotip-action@v0.0.2
-        with:
-          branch: master
+  [analyzers.meta]
+  import_root = "github.com/gotomicro/eorm-sqlx"
+  dependencies_vendored = false
 
-      - name: Build
-        run: gotip build -v ./...
+[[analyzers]]
+name = "test-coverage"
+enabled = true
 
-      - name: Test
-        run: gotip test -coverprofile=cover.out -v ./...
+[[analyzers]]
+name = "sql"
+enabled = true
 
-      - name: Post Coverage
-        uses: codecov/codecov-action@v2
